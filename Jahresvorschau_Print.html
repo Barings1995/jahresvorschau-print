@@ -6881,24 +6881,34 @@ function coverFarbeErmitteln(src, fertig){
       const c = document.createElement('canvas'); c.width = w; c.height = h;
       const x = c.getContext('2d'); x.drawImage(bild, 0, 0, w, h);
       const d = x.getImageData(0, 0, w, h).data;
-      const toepfe = new Map();
-      for(let i=0; i<d.length; i+=4){
-        const r=d[i], g=d[i+1], b=d[i+2];
-        const max=Math.max(r,g,b), min=Math.min(r,g,b), l=(max+min)/510;
-        const sat = max===min ? 0 : (max-min)/(255-Math.abs(max+min-255));
-        if(sat<.3 || l>.92 || l<.08) continue;
-        const k = (r>>5)<<6 | (g>>5)<<3 | (b>>5);
-        const t = toepfe.get(k) || {n:0, w:0, r:0, g:0, b:0};
-        t.n++; t.w+=sat; t.r+=r; t.g+=g; t.b+=b; toepfe.set(k, t);
-      }
-      let best = null;
-      toepfe.forEach(t=>{ if(!best || t.w>best.w) best = t; });
-      if(!best || best.n < w*h*.03) return fertig(null);
-      fertig(lesbareFarbe(best.r/best.n, best.g/best.n, best.b/best.n));
+      // Zuerst das Kopfband (oberes Fuenftel): dort steht bei Zeitschriften
+      // die Markenfarbe hinter dem Titelnamen. Erst wenn es keine deutliche
+      // Farbe traegt (mind. 25 % seiner Flaeche), zaehlt das ganze Bild.
+      const kopf = Math.max(1, Math.round(h * .2));
+      const f = praegendeFarbe(d, w, 0, kopf, .25) || praegendeFarbe(d, w, 0, h, .03);
+      fertig(f ? lesbareFarbe(f.r, f.g, f.b) : null);
     }catch(e){ fertig(null); }
   };
   bild.onerror = ()=> fertig(null);
   bild.src = src;
+}
+// Satteste haeufige Farbe der Zeilen y0..y1; null, wenn sie weniger als
+// den Anteil min der Flaeche ausmacht. Weiss, Schwarz und Grau zaehlen nicht.
+function praegendeFarbe(d, w, y0, y1, min){
+  const toepfe = new Map();
+  for(let i=y0*w*4; i<y1*w*4; i+=4){
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const mx=Math.max(r,g,b), mn=Math.min(r,g,b), l=(mx+mn)/510;
+    const sat = mx===mn ? 0 : (mx-mn)/(255-Math.abs(mx+mn-255));
+    if(sat<.3 || l>.92 || l<.08) continue;
+    const k = (r>>5)<<6 | (g>>5)<<3 | (b>>5);
+    const t = toepfe.get(k) || {n:0, w:0, r:0, g:0, b:0};
+    t.n++; t.w+=sat; t.r+=r; t.g+=g; t.b+=b; toepfe.set(k, t);
+  }
+  let best = null;
+  toepfe.forEach(t=>{ if(!best || t.w>best.w) best = t; });
+  if(!best || best.n < (y1-y0)*w*min) return null;
+  return {r:best.r/best.n, g:best.g/best.n, b:best.b/best.n};
 }
 // Haelt Farbton und Saettigung, begrenzt die Helligkeit auf 50 %.
 function lesbareFarbe(r, g, b){
