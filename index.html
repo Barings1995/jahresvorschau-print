@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jahresvorschau Print · Springer Medizin</title>
+<meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs als einzelne HTML-Datei, ohne Datenbank.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#00285A;--orange:#EE7D11;--blau:#0176C3;--text:#1c2a3a;--muted:#5b6b80;--flaeche:#f3f5f9;--rand:#d5dbe5}
+*{box-sizing:border-box}
+html{background:var(--flaeche)}
+body{margin:0;font-family:"Source Sans 3",system-ui,sans-serif;color:var(--text);background:var(--flaeche);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:28px 16px 24px;border-bottom:3px solid var(--orange)}
+.innen{max-width:760px;margin:0 auto}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:1.9rem;margin:0;line-height:1.2}
+h1 span{color:var(--orange)}
+header p{margin:6px 0 0;color:#c9d4e3;font-size:.95rem}
+main{padding:28px 16px 40px}
+.karte{background:#fff;border:1px solid var(--rand);border-radius:8px;padding:20px 22px;margin-bottom:14px}
+.karte h2{margin:0 0 4px;font-size:1.1rem;color:var(--navy)}
+.karte p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.knoepfe{display:flex;flex-wrap:wrap;gap:8px}
+.knopf{display:inline-block;padding:8px 16px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid var(--navy)}
+.knopf.voll{background:var(--navy);color:#fff}
+.knopf.voll:hover{background:#001a3d}
+.knopf.hell{background:#fff;color:var(--navy)}
+.knopf.hell:hover{background:#e6f1fa}
+.knopf:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.hinweis{font-size:.88rem;color:var(--muted)}
+.hinweis h2{font-size:.95rem;color:var(--navy);margin:22px 0 6px}
+.hinweis ol{margin:0;padding-left:20px}
+</style>
+</head>
+<body>
+<header><div class="innen">
+  <h1>Jahresvorschau <span>Print</span></h1>
+  <p>Termine, Themen und Kongresse der Printtitel eines Fachbereichs – als einzelne HTML-Datei, ohne Datenbank.</p>
+</div></header>
+<main><div class="innen">
+  <section class="karte">
+    <h2>Leere Fassung</h2>
+    <p>Zum Ausfüllen. Beim ersten Öffnen werden Fachbereich und Jahrgang abgefragt.</p>
+    <div class="knoepfe">
+      <a class="knopf voll" href="Jahresvorschau_Print.html" download>Herunterladen</a>
+    </div>
+  </section>
+  <section class="karte">
+    <h2>Beispiel</h2>
+    <p>Dieselbe Datei mit frei erfundenen Daten in zwei Fachbereichen (Kardiologie, Pneumologie). Nur zum Ansehen.</p>
+    <div class="knoepfe">
+      <a class="knopf hell" href="Beispiel_Kardiologie_Pneumologie.html">Im Browser ansehen</a>
+      <a class="knopf hell" href="Beispiel_Kardiologie_Pneumologie.html" download>Herunterladen</a>
+    </div>
+  </section>
+  <div class="hinweis">
+    <h2>Arbeiten mit der Datei</h2>
+    <ol>
+      <li>Die leere Fassung herunterladen und an einem festen Ort ablegen.</li>
+      <li>Die Datei per Doppelklick im Browser öffnen. Empfohlen sind Chrome oder Edge: Dort wird nach dem ersten Sichern automatisch in dieselbe Datei gesichert.</li>
+      <li>Alle Daten stehen in der Datei selbst. Weitergegeben wird sie wie jedes andere Dokument.</li>
+    </ol>
+  </div>
+</div></main>
+</body>
+</html>
