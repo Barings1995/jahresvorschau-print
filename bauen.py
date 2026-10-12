@@ -1558,7 +1558,7 @@ function ersterStart(neu){
   const vorschlag = String(jetzt.getFullYear() + (jetzt.getMonth() >= 6 ? 1 : 0));
   dialogZeigen(neu ? 'Fachbereich hinzufügen' : 'Neue Jahresvorschau',
     `<label class="dlg-feld">Fachbereich
-       <input type="text" id="ersFach" placeholder="etwa Kardiologie" value="${neu ? '' : escA(FACHBEREICH)}"></label>
+       <input type="text" id="ersFach" value="${neu ? '' : escA(FACHBEREICH)}"></label>
      <label class="dlg-feld">Jahrgang
        <input type="text" id="ersJahr" inputmode="numeric" maxlength="4" value="${escA(vorschlag)}"></label>
      <div class="pr-stand">${neu
