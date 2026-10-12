@@ -301,7 +301,7 @@ rep('#netzhinweis[hidden]{display:none}\n</style>',
    ruhiger Hinweis ohne Rahmen; er ist kein Knopf und tut nichts. */
 .sicher-stand{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:.78rem;color:var(--muted);cursor:default;white-space:nowrap}
 .sicher-stand[hidden]{display:none}
-.sicher-stand::before{content:"✓";color:var(--navy);font-weight:700}
+.sicher-stand::before{content:"✓";color:var(--navy);font-weight:700;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
 .sicher-stand.laeuft::before{content:"…"}
 .sicher-stand:not([hidden])~.daten-wrap{margin-left:0}
 /* Fachbereich im Titel: wie der Jahrgang daneben ein Teil des Namens, der
@@ -313,7 +313,7 @@ rep('#netzhinweis[hidden]{display:none}\n</style>',
 .fach-wahl:hover,.fach-wahl[aria-expanded="true"],.jahr-wahl[aria-expanded="true"]{background-color:rgba(255,255,255,.16)}
 .fach-menu{left:0;right:auto;min-width:280px;font:400 14px/1.4 'Source Sans 3',Arial,Helvetica,sans-serif;letter-spacing:normal;text-wrap:wrap}
 .fach-menu .ex-item.aktiv{background:var(--navy-faint);cursor:default}
-.fach-menu .ex-item.aktiv .ex-t::after{content:" ✓";color:var(--accent)}
+.fach-menu .ex-item.aktiv .ex-t::after{content:" ✓";color:var(--accent);font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
 .leerstart{grid-column:1/-1;max-width:520px;margin:48px auto;text-align:center;color:var(--muted)}
 .leerstart h3{color:var(--navy);font-size:1.05rem;margin-bottom:8px}
 .leerstart button{margin-top:14px}
