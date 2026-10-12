@@ -5,39 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jahresvorschau Print · Springer Medizin</title>
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs als einzelne HTML-Datei, ohne Datenbank.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#00285A;--orange:#EE7D11;--blau:#0176C3;--text:#1c2a3a;--muted:#5b6b80;--flaeche:#f3f5f9;--rand:#d5dbe5}
+/* Werte aus der Jahresvorschau (Jahresvorschau_Print.html): Farben, Kopfstreifen,
+   Knoepfe und Fokusrahmen sind dort abgenommen und werden hier nur uebernommen. */
+:root{--bg:#f7f8fa;--surface:#ffffff;--surface3:#e5e8ef;--text:#00285a;--muted:#4a6080;--accent:#ee7d11;--border:#d5dce8;--navy:#00285a;--navy-light:#1a4a7a;--sblue:#0176c3;--navy-faint:#e8edf4}
 *{box-sizing:border-box}
-html{background:var(--flaeche)}
-body{margin:0;font-family:"Source Sans 3",system-ui,sans-serif;color:var(--text);background:var(--flaeche);line-height:1.5}
-header{background:var(--navy);color:#fff;padding:28px 16px 24px;border-bottom:3px solid var(--orange)}
-.innen{max-width:760px;margin:0 auto}
-h1{font-family:"Playfair Display",Georgia,serif;font-size:1.9rem;margin:0;line-height:1.2}
-h1 span{color:var(--orange)}
-header p{margin:6px 0 0;color:#c9d4e3;font-size:.95rem}
+html{background:var(--bg)}
+body{margin:0;font-family:'Source Sans 3',Arial,Helvetica,sans-serif;font-size:14px;color:var(--text);background:var(--bg);line-height:1.5}
+.sm-hero{background:linear-gradient(135deg,#002050 0%,var(--navy) 60%,#004080 100%);border-bottom:3px solid var(--accent);padding:1.1rem 1.5rem 1rem}
+.sm-hero-head{display:flex;align-items:center;gap:16px;max-width:760px;margin:0 auto}
+.sm-logo-white{line-height:0;flex:none}
+.sm-logo-white svg{height:28px;width:auto;display:block}
+.sm-hero-div{width:1px;align-self:stretch;min-height:34px;background:rgba(255,255,255,.28);flex:none}
+.sm-hero-titles{display:flex;flex-direction:column;gap:2px}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:25px;letter-spacing:-.01em;color:#fff;font-weight:700;line-height:1.2;margin:0;text-wrap:balance}
+h1 .accent{color:var(--accent)}
+.brand-sub{line-height:17.5px;font-size:12px;color:rgba(255,255,255,.72);letter-spacing:.16em;font-weight:600;text-transform:uppercase}
 main{padding:28px 16px 40px}
-.karte{background:#fff;border:1px solid var(--rand);border-radius:8px;padding:20px 22px;margin-bottom:14px}
-.karte h2{margin:0 0 4px;font-size:1.1rem;color:var(--navy)}
-.karte p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.innen{max-width:760px;margin:0 auto}
+.einleitung{margin:0 0 18px;color:var(--muted)}
+.karte{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 18px;margin-bottom:12px}
+.karte h2{margin:0 0 4px;font-size:1.05rem;font-weight:600;color:var(--navy)}
+.karte p{margin:0 0 12px;color:var(--muted)}
 .knoepfe{display:flex;flex-wrap:wrap;gap:8px}
-.knopf{display:inline-block;padding:8px 16px;border-radius:6px;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid var(--navy)}
-.knopf.voll{background:var(--navy);color:#fff}
-.knopf.voll:hover{background:#001a3d}
-.knopf.hell{background:#fff;color:var(--navy)}
-.knopf.hell:hover{background:#e6f1fa}
-.knopf:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
-.hinweis{font-size:.88rem;color:var(--muted)}
-.hinweis h2{font-size:.95rem;color:var(--navy);margin:22px 0 6px}
+.knopf{display:inline-flex;align-items:center;padding:6px 12px;font-size:.78rem;font-weight:600;text-decoration:none;border:1.5px solid;border-radius:4px;transition:background .15s,border-color .15s}
+.knopf:active{transform:translateY(1px)}
+.knopf.voll{color:#ffffff;background:var(--navy);border-color:var(--navy)}
+.knopf.voll:hover{background:var(--navy-light);border-color:var(--navy-light)}
+.knopf.hell{color:var(--navy);background:none;border-color:var(--border)}
+.knopf.hell:hover{background:var(--navy-faint);border-color:var(--navy-light)}
+:focus-visible{outline:2px solid var(--sblue);outline-offset:2px;border-radius:3px}
+.hinweis{font-size:.9rem;color:var(--muted)}
+.hinweis h2{font-size:.95rem;font-weight:600;color:var(--navy);margin:22px 0 6px}
 .hinweis ol{margin:0;padding-left:20px}
+@media (max-width:560px){
+  .sm-hero{padding:12px 16px}
+  .sm-hero-head{flex-wrap:wrap;gap:10px 16px}
+  .sm-hero-div{display:none}
+  .sm-hero-titles{flex-basis:100%}
+}
 </style>
 </head>
 <body>
-<header><div class="innen">
-  <h1>Jahresvorschau <span>Print</span></h1>
-  <p>Termine, Themen und Kongresse der Printtitel eines Fachbereichs – als einzelne HTML-Datei, ohne Datenbank.</p>
+<header class="sm-hero"><div class="sm-hero-head">
+  <div class="sm-logo-white" aria-label="Springer Medizin" role="img"><svg id="sm-logo-svg" style="display:block;height:28px;width:auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 157.207 26.299"><defs><style>.cls-1{fill:#fff;stroke-width:0px;}</style></defs><path class="cls-1" d="M20.733,20.18H3.744v-1.044h1.44c.252-3.384,3.491-4.644,5.291-7.379h-2.087c-1.008.36-2.52,2.591-2.52,3.887h-2.627l.036-1.08-.864.72L.108,12.621s-.108-.144-.108-.252.036-.18.036-.18l3.636-4.931.647-1.944.972-.36,1.008-1.404-.36-2.448c.972-.36,1.908-.036,2.375.432.036-.72-.036-1.512-.036-1.512,1.728-.18,2.339.756,2.627,1.8.468.036.9.108,1.296.18.072-.216.288-.396.54-.396.324,0,.539.252.539.54v.144c.756.252,1.476.612,2.124,1.008.108-.144.252-.216.432-.216.324,0,.54.252.54.54,0,.144-.036.252-.108.324.612.504,1.116,1.116,1.584,1.764.072-.036.18-.072.252-.072.324,0,.576.252.576.54,0,.216-.108.396-.288.468.36.648.647,1.368.864,2.124.036-.036.108-.036.144-.036.324,0,.54.252.54.54s-.18.504-.395.54c.143.756.252,1.512.324,2.304.324,0,.576.252.576.54,0,.324-.252.539-.539.576,0,.756-.036,1.584-.108,2.376.288.036.504.288.504.576s-.252.54-.576.54h-.036c-.143.792-.288,1.583-.468,2.412h1.512v1.044ZM18.142,19.172c2.088-8.603-.36-15.442-7.019-16.234.036.36.036.648.036.936,0,.432-.036.792-.036.792l-1.043-.18c.036-.36.108-2.808-.756-3.347,0,0,0,1.295-.288,2.591l-.972-.18c0-.9-.396-1.26-.936-1.512l.252,1.764-.612.9.288.828-1.908.648-.54,1.548-3.348,4.608,1.26,1.512,1.404-1.188.324.216v1.764h.756c.324-1.26,1.368-2.736,2.34-3.456l-.54-.648.792-.684.756.936s2.7,0,2.7-.036c.396-.864.648-1.908.648-3.131h1.044c0,4.104-2.052,5.723-4.607,8.243-.936.936-1.764,1.943-1.872,3.311h11.878ZM3.132,11.217c.036.468-.036,1.188-.288,1.548l-.756-.288c.252-.36.396-.864.396-1.296l.648.036ZM7.271,7.221l-1.62.864-.108-1.332,1.692-.18.036.648Z"/><path class="cls-1" d="M20.733,25.507H3.744v-2.088h16.99v2.088Z"/><path class="cls-1" d="M32.399,20.468c-1.368,0-2.448-.324-3.492-.792-.216-.936-.288-2.196-.36-3.492l.828-.144c.468,1.764,1.116,3.492,3.275,3.492,1.512,0,2.412-.936,2.412-2.34,0-3.708-6.155-2.879-6.155-7.163,0-1.944,1.584-3.708,4.392-3.708.936,0,1.944.252,2.952.612.072.756.144,1.62.18,3.132l-.756.036c-.36-1.26-.935-2.808-2.771-2.808-1.368,0-2.052.936-2.052,2.052,0,3.42,6.263,2.7,6.263,7.163,0,2.124-1.908,3.96-4.715,3.96ZM42.658,20.324c-.576-.036-1.044-.144-1.332-.252v3.383c0,1.224.144,1.332,1.8,1.476v.684h-5.075v-.684c1.296-.144,1.404-.252,1.404-1.476v-9.611c0-1.26-.036-1.296-1.26-1.404v-.612c1.08-.216,2.087-.54,3.131-.9v1.368l1.944-1.008c.252-.144.504-.18.756-.18,2.232,0,3.492,1.943,3.492,3.815,0,3.024-2.16,5.075-4.859,5.4ZM43.125,12.441c-.576,0-1.332.396-1.8.684v5.327c.396.432,1.044.756,1.836.756,1.044,0,2.412-.792,2.412-3.491,0-2.268-1.08-3.276-2.448-3.276ZM54.356,13.341c-.216-.288-.504-.36-.864-.36-.468,0-1.044.54-1.44,1.656v3.348c0,1.224.144,1.332,1.692,1.44v.72h-4.895v-.72c1.224-.108,1.368-.216,1.368-1.44v-4.067c0-1.224-.108-1.224-1.224-1.44v-.612c1.08-.216,2.124-.432,3.059-.792v2.16h.036c.648-1.188,1.548-2.124,2.375-2.124.72,0,1.224.54,1.224,1.116,0,.828-.864,1.548-1.332,1.116ZM61.231,20.144h-4.607v-.72c1.224-.108,1.404-.216,1.404-1.512v-3.888c0-1.404-.108-1.404-1.296-1.548v-.612c1.116-.216,2.231-.468,3.131-.792v6.839c0,1.296.108,1.404,1.368,1.512v.72ZM58.855,9.165c-.684,0-1.224-.54-1.224-1.224,0-.72.54-1.26,1.224-1.26.72,0,1.26.54,1.26,1.26,0,.684-.539,1.224-1.26,1.224ZM72.246,20.144h-4.248v-.72c1.008-.108,1.152-.216,1.152-1.368v-3.527c0-1.296-.576-2.088-1.656-2.088-.684,0-1.476.504-2.016,1.008v4.607c0,1.152.108,1.26,1.116,1.368v.72h-4.392v-.72c1.224-.108,1.404-.216,1.404-1.368v-4.139c0-1.224-.072-1.296-1.152-1.44v-.612c1.08-.216,2.088-.432,3.023-.792v1.44c.468-.396,1.836-1.404,2.88-1.404,1.62,0,2.627,1.116,2.627,2.772v4.175c0,1.152.18,1.26,1.26,1.368v.72ZM82.504,11.577c-.144.324-.54.936-.864,1.116l-1.044-.108c.288.396.504,1.188.504,1.8,0,2.196-1.979,3.384-3.779,3.384-.108,0-.396-.036-.648-.036-.432.144-.792.648-.792.972s.324.72,1.188.72h2.16c1.26,0,2.952.612,2.952,2.627,0,2.304-2.412,4.248-5.219,4.248-2.448,0-3.744-1.512-3.744-2.736,0-.792.396-1.404,2.088-2.7-.612-.216-1.692-.828-1.62-1.98.828-.36,1.584-1.008,1.908-1.404-.972-.324-1.872-1.476-1.872-2.771,0-2.34,2.088-3.6,3.815-3.6.756,0,1.476.18,2.088.504.936-.036,1.872-.144,2.736-.252l.144.216ZM79.661,21.224c-.504-.18-1.188-.216-2.304-.216-1.548,0-2.232,1.152-2.232,2.016,0,1.224,1.08,2.16,2.7,2.16,1.8,0,2.808-1.188,2.808-2.376,0-.756-.432-1.368-.972-1.583ZM77.357,11.973c-.756,0-1.62.792-1.62,2.304s.792,2.592,1.872,2.592c.791,0,1.548-.684,1.548-2.34,0-1.404-.684-2.556-1.8-2.556ZM90.063,15.14c-.324.036-2.808.216-5.075.288.072,2.375,1.476,3.383,2.88,3.383.791,0,1.368-.216,2.087-.936l.468.648c-1.188,1.476-2.592,1.835-3.24,1.835-2.556,0-4.032-1.943-4.032-4.247,0-2.808,2.124-5.003,4.248-5.003,1.764,0,3.167,1.512,3.167,3.204,0,.54-.108.756-.504.828ZM87.004,12.009c-.828,0-1.692.9-1.908,2.447l3.096-.072c.396,0,.468-.108.468-.468,0-.972-.684-1.908-1.656-1.908ZM97.371,13.341c-.252-.252-.576-.36-.864-.36-.468,0-1.08.54-1.476,1.656v3.348c0,1.224.144,1.332,1.691,1.44v.72h-4.931v-.72c1.26-.108,1.368-.216,1.368-1.44v-4.067c0-1.224-.072-1.224-1.224-1.44v-.612c1.152-.216,2.16-.432,3.096-.792v2.16h.036c.612-1.188,1.512-2.124,2.376-2.124.684,0,1.224.54,1.224,1.116,0,.828-.9,1.548-1.296,1.116Z"/><path class="cls-1" d="M113.758,20.144l-.396-6.083c-.144-1.908-.288-4.068-.216-5.759-.54,1.62-1.009,3.06-1.692,4.895l-2.628,6.947h-.647l-2.448-6.731c-.684-1.872-1.224-3.384-1.655-5.039-.036,1.764-.144,3.815-.288,5.831l-.36,5.939h-.971l.936-12.814h1.115l2.664,7.127c.611,1.656,1.008,2.88,1.403,4.284.324-1.368.756-2.556,1.404-4.248l2.699-7.163h1.188l.863,12.814h-.972Z"/><path class="cls-1" d="M117.72,15.573c.035,2.987,1.547,3.923,3.239,3.923,1.116,0,1.764-.216,2.304-.504l.216.756c-.432.252-1.332.54-2.664.54-2.556,0-4.067-1.872-4.067-4.427,0-2.916,1.62-4.752,3.888-4.752,2.771,0,3.311,2.556,3.311,3.887,0,.216,0,.396-.036.576h-6.19ZM117.791,14.817h5.147c0-1.476-.684-2.952-2.447-2.952-1.728,0-2.556,1.584-2.7,2.952Z"/><path class="cls-1" d="M131.974,20.144l-.036-1.512c-.504.936-1.512,1.692-2.987,1.692-2.052,0-3.708-1.692-3.708-4.5,0-3.024,1.8-4.751,3.851-4.751,1.26,0,2.196.612,2.7,1.44v-5.363h.972v10.979c0,.576.036,1.44.072,2.016h-.864ZM131.794,14.744c0-.216-.036-.504-.072-.756-.288-1.152-1.26-2.088-2.556-2.088-1.836,0-2.916,1.692-2.916,3.852,0,1.98.9,3.816,2.844,3.816,1.08,0,2.196-.684,2.628-2.232.036-.216.072-.396.072-.648v-1.944Z"/><path class="cls-1" d="M135.683,9.669c-.396,0-.72-.36-.72-.792s.323-.792.791-.792c.396,0,.721.36.721.792s-.324.792-.756.792h-.036ZM135.215,20.144v-8.855h.972v8.855h-.972Z"/><path class="cls-1" d="M137.842,20.144v-.576l4.608-6.299c.287-.396.611-.756.971-1.188h-5.147v-.792h6.299v.612l-4.607,6.264c-.288.395-.576.791-.9,1.224h5.507v.756h-6.731Z"/><path class="cls-1" d="M147.274,9.669c-.396,0-.721-.36-.721-.792s.324-.792.791-.792c.396,0,.721.36.721.792s-.324.792-.756.792h-.035ZM146.805,20.144v-8.855h.973v8.855h-.973Z"/><path class="cls-1" d="M156.237,20.144v-5.363c0-1.512-.541-2.844-2.268-2.844-1.152,0-2.16.792-2.449,1.908-.07.216-.107.504-.107.792v5.507h-1.008v-6.731c0-.864-.035-1.368-.072-2.124h.936l.037,1.404c.504-.9,1.584-1.584,2.879-1.584,1.008,0,3.023.504,3.023,3.491v5.543h-.971Z"/></svg></div>
+  <div class="sm-hero-div"></div>
+  <div class="sm-hero-titles">
+    <h1>Jahresvorschau <span class="accent">Print</span></h1>
+    <span class="brand-sub">Termine &middot; Themen &middot; Kongresse</span>
+  </div>
 </div></header>
 <main><div class="innen">
+  <p class="einleitung">Termine, Themen und Kongresse der Printtitel eines Fachbereichs – als einzelne HTML-Datei, ohne Datenbank.</p>
   <section class="karte">
     <h2>Leere Fassung</h2>
     <p>Zum Ausfüllen. Beim ersten Öffnen werden Fachbereich und Jahrgang abgefragt.</p>
