@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung e7a702cf84b896197f9936ca07245b9e">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung f7efb8539e45b6dfc66c6e428714c291">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
@@ -396,11 +396,20 @@ table.tab.tx3 td.t-thema,table.tab.tx3 td.t-kong{width:25%}
    mindestens 40 px hoch, Titel in einer wischbaren Zeile. */
 @media(max-width:640px){
   header{position:static}
-  .sm-hero{padding:10px 14px 9px}
+  .sm-hero{padding:10px 14px 9px;position:relative}
+  /* "Abmelden" (nur angemeldet sichtbar) lag neben dem Titel und schob die
+     Seite auf 394 px - Safari zoomte daraufhin alles heraus. Unten rechts
+     auf Hoehe der Jahreszahl ist Platz; die Tippflaeche reicht ueber den
+     sichtbaren Rahmen hinaus. */
+  .hero-konto{position:absolute;right:14px;bottom:9px}
+  .hk-ab{position:relative}
+  .hk-ab::after{content:"";position:absolute;inset:-9px -8px}
   .sm-hero-head{gap:12px;margin-bottom:0}
   .sm-logo-white svg{height:22px!important}
   .brand-sub{display:none}
-  .hero-year{padding-top:7px;padding-bottom:7px;margin-top:-7px;margin-bottom:-7px}
+  /* Jahreszahl immer in eigener Zeile - sonst rueckt sie bei breiteren
+     Handys hinter den Titel und unter den Knopf Abmelden. */
+  .hero-year{display:block;padding-top:7px;padding-bottom:7px;margin-top:-7px;margin-bottom:-7px}
   .controls{padding:10px 14px 12px}
   .search-row{flex-direction:row;flex-wrap:wrap;gap:8px;margin-bottom:10px}
   .search-wrap,.mode-group,.view-group{flex:1 1 100%}
