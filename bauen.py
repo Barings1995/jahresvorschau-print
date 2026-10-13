@@ -148,7 +148,7 @@ rep('''<button class="mode-btn"        data-mode="auslage" onclick="setModus('au
     '''<button class="mode-btn"        data-mode="auslage" onclick="setModus('auslage')">Kongresse</button>''')
 rep('''\n      <button class="mode-btn"        data-mode="bericht" onclick="setModus('bericht')">Berichte</button>''', '')
 rep("const MODUS_TEXT = {auslage:'Kongressauslagen',", "const MODUS_TEXT = {auslage:'Kongresse',")
-rep('''\n      <button class="view-btn"        data-view="kongress" onclick="setView('kongress')">Kongressliste</button>''', '')
+rep('''\n      <button class="view-btn"        data-view="kongress" onclick="setView('kongress')"><span class="lang">Kongressliste</span><span class="kurz">Kongresse</span></button>''', '')
 # Aufgeklappte Monatsliste: Die Zeile hat schon eine Linie ueber dem Detail;
 # der erste Block bringt deshalb keine eigene mit (sonst doppelte Linie).
 rep(".ldetail .thema{border-top-color:var(--surface3)}\n",
@@ -231,9 +231,9 @@ rep("Farbe und vollständiger Name fehlen dafür.</div>`);",
     "Die Kennfarbe lässt sich danach unter »Bearbeiten« setzen.</div>`);")
 
 # ── Bedienung: Inhaltsfilter, Sichern, Fachbereich ─────────────────────────
-rep('''<button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')">Themenschwerpunkte</button>''',
-    '''<button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')">Themenschwerpunkte</button>
-      <button class="mode-btn"        data-mode="rubrik"  onclick="setModus('rubrik')" hidden>Weitere Rubriken</button>''')
+rep('''<button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')"><span class="lang">Themenschwerpunkte</span><span class="kurz">Themen</span></button>''',
+    '''<button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')"><span class="lang">Themenschwerpunkte</span><span class="kurz">Themen</span></button>
+      <button class="mode-btn"        data-mode="rubrik"  onclick="setModus('rubrik')" hidden><span class="lang">Weitere Rubriken</span><span class="kurz">Rubriken</span></button>''')
 rep("bericht:'Kongressberichte',thema:'Themenschwerpunkte'};",
     "bericht:'Kongressberichte',thema:'Themenschwerpunkte',rubrik:'Weitere Rubriken'};")
 rep("['auslage','bericht','thema'].filter(k=>modus.has(k))", "['auslage','bericht','thema','rubrik'].filter(k=>modus.has(k))")
@@ -352,7 +352,9 @@ rep('''.leerstart{grid-column:1/-1;''', '''/* Kontakt rechts im Kopf, ueber dem 
 .hk-knopf{font:inherit;color:inherit;text-align:right;background:none;border:none;border-bottom:1px dotted rgba(255,255,255,.35);border-radius:0;padding:0;cursor:pointer}
 .hk-knopf:hover{border-bottom-color:var(--accent)}
 .hk-knopf.leer{color:rgba(255,255,255,.6)}
-@media(max-width:640px){.hero-kontakt{display:none}}
+@media(max-width:640px){.hero-kontakt{display:none}
+  /* Tippflaeche wie die Jahrgangswahl, ohne dass der Titel hoeher wird */
+  .fach-wahl{padding-top:7px;padding-bottom:7px;margin-top:-7px;margin-bottom:-7px}}
 .eh-kontakt{display:none}
 @media print{
   .eh-rechts{flex:none;display:flex;flex-direction:column;align-items:flex-end}

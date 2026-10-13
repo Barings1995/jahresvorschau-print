@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung f5cda1029bc5c3ac8a6fd6874a7299ff">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung e7a702cf84b896197f9936ca07245b9e">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
@@ -27,6 +27,9 @@ html{background:var(--bg)}
 body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',Arial,Helvetica,sans-serif;font-size:14px;zoom:1}
 
 /* ── Header ── */
+/* Safari/WebKit am iPhone vergroessert im Querformat sonst einzelne Texte
+   eigenmaechtig - dieselbe Regel wie in den Angebotswerkzeugen. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 header{background:var(--surface);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,40,90,.08)}
 /* Hero-Streifen (Logo + Titel), analog OpenSlots */
 .sm-hero{background:linear-gradient(135deg,#002050 0%,var(--navy) 60%,#004080 100%);border-bottom:3px solid var(--accent);padding:1.1rem 1.5rem 1rem}
@@ -374,6 +377,49 @@ table.tab.tx3 td.t-thema,table.tab.tx3 td.t-kong{width:25%}
   .ktitel,.kthema{grid-column:1/-1}
 }
 @media(max-width:640px){main{padding:14px}.sm-hero,.controls{padding:12px 14px}h1{font-size:1.2rem}.search-row{flex-direction:column;align-items:stretch}.search-wrap{max-width:none}.mode-group{width:100%}.export-wrap{align-self:flex-end;margin-left:0}.grid{grid-template-columns:1fr}.hero-stamp,.hk-mail{display:none}.view-group{width:100%}.view-btn{flex:1}}
+
+/* Kurzbeschriftung der Baender - am Handy reicht die Breite sonst nicht fuer
+   alle Knoepfe (Themenschwerpunkte und Kongressliste lagen jenseits des Randes). */
+.kurz{display:none}
+
+/* Schmales Fenster: Matrix und Tabelle werden seitlich geschoben, die
+   Titelspalte bleibt dabei stehen, damit jede Zeile zuzuordnen bleibt. */
+@media(max-width:1000px){
+  table.matrix tbody .mx-title,table.matrix .mx-corner{position:sticky;left:0;z-index:2}
+  table.tab td:first-child,table.tab th:first-child{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:1px 0 0 var(--border)}
+  table.tab th:first-child{background:var(--navy-faint)}
+  table.tab tbody tr:hover td:first-child{background:var(--surface2)}
+}
+
+/* Handy: zum Nachschlagen. Der Kopf steht nicht fest - er waere hier rund
+   500 px hoch und liesse vom Inhalt kaum etwas sichtbar. Bedienflaechen
+   mindestens 40 px hoch, Titel in einer wischbaren Zeile. */
+@media(max-width:640px){
+  header{position:static}
+  .sm-hero{padding:10px 14px 9px}
+  .sm-hero-head{gap:12px;margin-bottom:0}
+  .sm-logo-white svg{height:22px!important}
+  .brand-sub{display:none}
+  .hero-year{padding-top:7px;padding-bottom:7px;margin-top:-7px;margin-bottom:-7px}
+  .controls{padding:10px 14px 12px}
+  .search-row{flex-direction:row;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .search-wrap,.mode-group,.view-group{flex:1 1 100%}
+  .search-wrap input{font-size:16px;min-height:42px}
+  .mode-btn,.view-btn{flex:1 1 auto;min-height:40px;padding:0 6px}
+  .lang{display:none}.kurz{display:inline}
+  .daten-wrap,.export-wrap{flex:1 1 0;margin:0}
+  .daten-btn,.export-btn{width:100%;justify-content:center;min-height:40px}
+  .export-menu{min-width:0;width:calc(100vw - 28px)}
+  .daten-wrap .export-menu{right:auto;left:0}
+  .filter-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px}
+  .filter-row::-webkit-scrollbar{display:none}
+  .filter-lbl,.chip{flex:none}
+  .chip{min-height:40px;display:inline-flex;align-items:center}
+  .legend{display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+  .legend>span:nth-child(4),.legend .switch{grid-column:1/-1}
+  .legend .filter-divider{display:none}
+  .switch{min-height:40px}
+}
 
 /* ── Clear button ── */
 /* Das Loeschzeichen ist gezeichnet, nicht gesetzt. Als Buchstabe (&times;) kam
@@ -1333,7 +1379,9 @@ p.bearb-stand:not(:empty){margin-top:9px}
 .hk-knopf{font:inherit;color:inherit;text-align:right;background:none;border:none;border-bottom:1px dotted rgba(255,255,255,.35);border-radius:0;padding:0;cursor:pointer}
 .hk-knopf:hover{border-bottom-color:var(--accent)}
 .hk-knopf.leer{color:rgba(255,255,255,.6)}
-@media(max-width:640px){.hero-kontakt{display:none}}
+@media(max-width:640px){.hero-kontakt{display:none}
+  /* Tippflaeche wie die Jahrgangswahl, ohne dass der Titel hoeher wird */
+  .fach-wahl{padding-top:7px;padding-bottom:7px;margin-top:-7px;margin-bottom:-7px}}
 .eh-kontakt{display:none}
 @media print{
   .eh-rechts{flex:none;display:flex;flex-direction:column;align-items:flex-end}
@@ -1384,13 +1432,13 @@ p.bearb-stand:not(:empty){margin-top:9px}
     <div class="mode-group">
       <button class="mode-btn active" data-mode="all"    onclick="setModus('all')">Alle Inhalte</button>
       <button class="mode-btn"        data-mode="auslage" onclick="setModus('auslage')">Kongresse</button>
-      <button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')">Themenschwerpunkte</button>
-      <button class="mode-btn"        data-mode="rubrik"  onclick="setModus('rubrik')" hidden>Weitere Rubriken</button>
+      <button class="mode-btn"        data-mode="thema"   onclick="setModus('thema')"><span class="lang">Themenschwerpunkte</span><span class="kurz">Themen</span></button>
+      <button class="mode-btn"        data-mode="rubrik"  onclick="setModus('rubrik')" hidden><span class="lang">Weitere Rubriken</span><span class="kurz">Rubriken</span></button>
     </div>
     <div class="view-group">
       <button class="view-btn active" data-view="cards"   onclick="setView('cards')">Kacheln</button>
-      <button class="view-btn"        data-view="liste"   onclick="setView('liste')">Monatsliste</button>
-      <button class="view-btn"        data-view="matrix"  onclick="setView('matrix')">Jahresmatrix</button>
+      <button class="view-btn"        data-view="liste"   onclick="setView('liste')"><span class="lang">Monatsliste</span><span class="kurz">Liste</span></button>
+      <button class="view-btn"        data-view="matrix"  onclick="setView('matrix')"><span class="lang">Jahresmatrix</span><span class="kurz">Matrix</span></button>
       <button class="view-btn"        data-view="tabelle" onclick="setView('tabelle')">Tabelle</button>
     </div>
     <span class="sicher-offen" id="sicherOffen" hidden>Nicht gesichert</span>
