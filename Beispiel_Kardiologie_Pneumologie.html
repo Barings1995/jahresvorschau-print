@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 5c1e37fb45263105dd9003864da9eefa">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung e228641dd006705ec3a25013920f9539">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -718,12 +718,16 @@ body.bearbmodus .daten-btn:hover{background:var(--sblue);border-color:var(--sblu
   .tabwrap{overflow:visible}
   table.tab{min-width:0!important;width:100%;font-size:7.5pt}
   table.tab thead{display:table-header-group}
-  /* Die Linie unter dem Kopf zeichnet ein Schatten statt der Rahmenlinie: in der
-     auf den Folgeseiten wiederholten Kopfzeile laesst Chrome den unteren Rand
-     weg, dort stand nur die duenne graue Linie der ersten Zeile. Der Rand bleibt
-     unsichtbar stehen, damit er weiterhin die Linie ueber der ersten Zeile
-     verdeckt und die Hoehe gleich bleibt. */
-  table.tab th{background:none;color:var(--navy);border-bottom:1.5px solid transparent;box-shadow:inset 0 -1.5px 0 var(--navy);font-size:6.5pt;padding:5px 5px}
+  /* Die Linie unter dem Kopf zeichnet ein eigenes Element statt der Rahmenlinie:
+     in der auf den Folgeseiten wiederholten Kopfzeile laesst Chrome den unteren
+     Rand weg, dort stand nur die duenne graue Linie der ersten Zeile. Ein
+     Schatten in der Zelle lag ueber dieser grauen Linie statt auf ihr; das
+     Element ragt einen halben Pixel unter die Zelle und deckt sie zu. Der Rand
+     bleibt unsichtbar stehen: er verdeckt auf Seite 1 die Linie ueber der
+     ersten Zeile und haelt die Hoehen gleich. Gemessen bei vierfacher
+     Darstellung: Lage und Staerke auf allen Seiten wie bisher auf Seite 1. */
+  table.tab th{background:none;color:var(--navy);border-bottom:1.5px solid transparent;font-size:6.5pt;padding:5px 5px;position:relative}
+  table.tab th::after{content:'';position:absolute;left:0;right:0;bottom:-.5px;height:1px;background:var(--navy)}
   /* Chrome wiederholt die Kopfzeile auf jeder Seite, zeichnet darin aber keine
      Knoepfe: auf den Folgeseiten stand nur "Kongresse", die einzige Spalte
      ohne Sortierknopf. Im Druck traegt der Knopf deshalb keinen eigenen Kasten,
