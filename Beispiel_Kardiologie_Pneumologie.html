@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 7c57798f4c31c24841a8afe52814dabf">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 7c7aace005342457acb76fddebf52291">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -732,6 +732,11 @@ body.bearbmodus .daten-btn:hover{background:var(--sblue);border-color:var(--sblu
      Darstellung: Lage und Staerke auf allen Seiten wie bisher auf Seite 1. */
   table.tab th{background:none;color:var(--navy);border-bottom:1.5px solid transparent;font-size:6.5pt;padding:5px 5px;position:relative}
   table.tab th::after{content:'';position:absolute;left:0;right:0;bottom:-.5px;height:1px;background:var(--navy)}
+  /* An den beiden Aussenecken setzt sich der breitere, durchsichtige Rand gegen
+     den Tabellenrahmen durch und schnitt eine weisse Luecke hinein. Die Linie
+     reicht dort deshalb ueber den Rahmen, wie zuvor die dunkelblaue Randlinie. */
+  table.tab th:first-child::after{left:-1px}
+  table.tab th:last-child::after{right:-1px}
   /* Chrome wiederholt die Kopfzeile auf jeder Seite, zeichnet darin aber keine
      Knoepfe: auf den Folgeseiten stand nur "Kongresse", die einzige Spalte
      ohne Sortierknopf. Im Druck traegt der Knopf deshalb keinen eigenen Kasten,
