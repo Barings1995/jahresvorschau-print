@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 754780b141a9732a1f6a987f10123619">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 9408e4a13e54325658f7e6eebb849de8">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -298,7 +298,10 @@ body.bearbmodus .filter-row{opacity:.38;pointer-events:none}
 /* Ohne Mindestbreite: die Matrix fuellt das Fenster immer exakt aus und
    zeigt keinen Scrollbalken. Die Mindestbreite greift erst in schmalen
    Fenstern (Regel weiter unten), wo tatsaechlich Spalten wegfallen. */
-table.matrix{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;background:var(--surface);border:1px solid var(--border);border-radius:6px}
+/* Eckig wie die Tabelle: an runden Ecken ragten die eckigen Zellen darueber
+   hinaus (oben links der Grund der Kopfzelle, unten links der Farbbalken des
+   letzten Titels). */
+table.matrix{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;background:var(--surface);border:1px solid var(--border)}
 table.matrix th,table.matrix td{border-bottom:1px solid var(--border);border-right:1px solid var(--border);padding:5px 6px;vertical-align:top}
 table.matrix tr:last-child th,table.matrix tr:last-child td{border-bottom:none}
 table.matrix th:last-child,table.matrix td:last-child{border-right:none}
@@ -708,7 +711,19 @@ body.bearbmodus .daten-btn:hover{background:var(--sblue);border-color:var(--sblu
   /* ── Jahresmatrix ── */
   .matrixwrap{overflow:visible;padding:0}
   table.matrix{min-width:0!important;width:100%;break-inside:avoid;font-size:8pt}
-  .mx-month,.mx-corner{background:none;border-bottom:1.5px solid var(--navy);font-size:7pt}
+  /* Die Linie braucht den langen Selektor: die Kopfzeile ist die letzte Zeile
+     ihres thead, und "table.matrix tr:last-child th" nimmt ihr den unteren
+     Rand - im Druck stand deshalb gar keine Linie unter den Spaltenkoepfen. */
+  .mx-month,.mx-corner{background:none;font-size:7pt}
+  table.matrix thead tr th.mx-month,table.matrix thead tr th.mx-corner{border-bottom:1.5px solid transparent;position:relative}
+  /* Die Linie selbst zeichnet ein Element, nicht der Rand: bei getrennten
+     Raendern schnitten die grauen Spaltenlinien und der Rahmen sie an jeder
+     Spaltengrenze an. Das Element reicht ueber die Spaltenlinie rechts, an der
+     ersten Zelle auch ueber den Rahmen links - durchgehend wie in der Tabelle.
+     1 px hoch, weil Chrome den 1,5-px-Rand im Druck ebenfalls auf 1 px zeichnet;
+     gemessen gleich stark wie die Kopflinie der Tabelle. */
+  table.matrix thead th::after{content:'';position:absolute;left:0;right:-1px;bottom:-1px;height:1px;background:var(--navy)}
+  table.matrix thead th:first-child::after{left:-1px}
   .mx-title{font-size:7.5pt}
   .mx-chip{background:none;font-size:7.5pt;border:1px solid var(--border);border-left:3px solid var(--jcol,var(--navy))}
   .mx-chip small{font-size:6.5pt}
