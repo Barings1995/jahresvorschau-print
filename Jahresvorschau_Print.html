@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 6dc9c03cfd99e7ed6c11ba3f0f3e4bdd">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung f896da6a9185ea1443ea8d99012a3e3f">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -192,7 +192,10 @@ main{padding:24px 1.5rem}
 .dates{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--navy-faint);border-radius:4px;padding:9px 8px;margin-bottom:12px}
 .date-col{text-align:center}
 .dk{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sblue);opacity:.9;margin-bottom:3px;cursor:default}
-.dv{font-size:.77rem;font-weight:500;font-variant-numeric:tabular-nums}
+/* 400, nicht 500: Google lieferte nur 300/400/600/700, die Daten erschienen also
+   immer in 400. Die eingebaute variable Schrift kann 500 wirklich, das machte die
+   Daten fetter und breiter und verschob im Tabellendruck den Umbruch. (22.10.2026) */
+.dv{font-size:.77rem;font-weight:400;font-variant-numeric:tabular-nums}
 
 /* congress */
 .ctype{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:flex;align-items:center;gap:5px}
@@ -406,8 +409,10 @@ table.tab.tx3 td.t-thema,table.tab.tx3 td.t-kong{width:25%}
 .kurz{display:none}
 
 /* Schmales Fenster: Matrix und Tabelle werden seitlich geschoben, die
-   Titelspalte bleibt dabei stehen, damit jede Zeile zuzuordnen bleibt. */
-@media(max-width:1000px){
+   Titelspalte bleibt dabei stehen, damit jede Zeile zuzuordnen bleibt.
+   Nur fuer den Bildschirm: Die Druckseite zaehlt ebenfalls als schmal, und die
+   Kopfzelle der Titelspalte stand dort als einzige blau hinterlegt. (22.10.2026) */
+@media screen and (max-width:1000px){
   table.matrix tbody .mx-title,table.matrix .mx-corner{position:sticky;left:0;z-index:2}
   table.tab td:first-child,table.tab th:first-child{position:sticky;left:0;z-index:1;background:var(--surface);box-shadow:1px 0 0 var(--border)}
   table.tab th:first-child{background:var(--navy-faint)}
