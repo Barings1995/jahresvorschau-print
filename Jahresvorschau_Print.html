@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung f896da6a9185ea1443ea8d99012a3e3f">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung ca7a3280d6d5812b03f75e1c328858fd">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -54,7 +54,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 header{background:var(--surface);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,40,90,.08)}
 /* Hero-Streifen (Logo + Titel), analog OpenSlots */
 .sm-hero{background:linear-gradient(135deg,#002050 0%,var(--navy) 60%,#004080 100%);border-bottom:3px solid var(--accent);padding:1.1rem 1.5rem 1rem}
-.sm-hero-head{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+/* Ohne Abstand nach unten: die 8 px stammten aus den Angebotswerkzeugen, wo darunter
+   eine Erklaerzeile stand. Die liegt dort seit 22.10.2026 hinter einem Info-Zeichen, und
+   der Abstand fiel weg; hier folgte ohnehin nichts. Beide Koepfe jetzt 89,7 px. */
+.sm-hero-head{display:flex;align-items:center;gap:16px}
 .sm-logo-white{line-height:0;flex:none}
 .sm-logo-white svg{height:30px;width:auto;display:block}
 .sm-hero-div{width:1px;align-self:stretch;min-height:34px;background:rgba(255,255,255,.28);flex:none}
