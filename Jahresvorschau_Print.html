@@ -6,7 +6,7 @@
 <!-- Ohne Jahrgang: die Arbeitsdatei enthaelt mehrere. Die versendete Kopie
      traegt dagegen den Jahrgang, den sie tatsaechlich enthaelt (baueKopie). -->
 <title>Jahresvorschau Print · Springer Medizin</title>
-<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung e228641dd006705ec3a25013920f9539">
+<meta name="jahresvorschau-fassung" content="Print 3 · gebaut aus der Web-Fassung 7c57798f4c31c24841a8afe52814dabf">
 <meta name="description" content="Jahresvorschau der Printtitel eines Fachbereichs: Erscheinungstermine, Anzeigenschluss, Kongresse und Themen – filter- und durchsuchbar.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2300285a'/%3E%3Crect x='6' y='7' width='20' height='19' rx='2.5' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='20' height='6' rx='2.5' fill='%23ee7d11'/%3E%3Cg fill='%2300285a'%3E%3Ccircle cx='11' cy='18' r='1.5'/%3E%3Ccircle cx='16' cy='18' r='1.5'/%3E%3Ccircle cx='21' cy='18' r='1.5'/%3E%3Ccircle cx='11' cy='22.5' r='1.5'/%3E%3Ccircle cx='16' cy='22.5' r='1.5'/%3E%3Ccircle cx='21' cy='22.5' r='1.5'/%3E%3C/g%3E%3C/svg%3E">
 <style>
@@ -655,8 +655,12 @@ body.bearbmodus .daten-btn:hover{background:var(--sblue);border-color:var(--sblu
   .eh-logo .cls-1{fill:var(--navy)}
   /* Zeilenhoehe fest auf den Wert vor der Umstellung auf EB Garamond (16pt x 1,15):
      mit 18pt x 1,15 wurde der Kopf gut 3 px hoeher, und in den Kacheln quer mit
-     Auslagen passte die dritte Reihe nicht mehr auf Seite 1. */
-  .eh-titel{font-family:'EB Garamond','Minion Pro',Georgia,serif;font-weight:600;font-size:18pt;line-height:18.4pt;color:var(--navy)}
+     Auslagen passte die dritte Reihe nicht mehr auf Seite 1. 18,39 statt 18,4 pt,
+     weil Chrome die Zeile je nach Schrift auf 1/64 px rundet: mit 18,4 pt lag
+     alles darunter 1/64 px tiefer als vorher, kleine Schrift und Haarlinien
+     wurden dadurch stellenweise anders gerastert. Gemessen: Kopf 70,375 px
+     wie vor der Umstellung. */
+  .eh-titel{font-family:'EB Garamond','Minion Pro',Georgia,serif;font-weight:600;font-size:18pt;line-height:18.39pt;color:var(--navy)}
   .eh-titel span{color:var(--accent)}
   .eh-auswahl{font-size:8.5pt;line-height:1.4;color:var(--navy);margin-top:5px}
   .eh-stand{font-size:7.5pt;line-height:1.4;color:var(--muted);margin-top:2px}
