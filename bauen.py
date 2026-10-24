@@ -361,6 +361,8 @@ rep('''.leerstart{grid-column:1/-1;''', '''/* Kontakt rechts im Kopf, ueber dem 
   .eh-kontakt{display:block;margin-top:6px;font-size:7.5pt;line-height:1.45;color:var(--muted);text-align:right;white-space:nowrap}
   .eh-kontakt:empty{display:none}
   .eh-kontakt b{color:var(--navy);font-weight:600}
+  /* Echter Link im PDF, damit die Adresse in jedem Programm anklickbar ist; aussehen soll sie wie der Text daneben */
+  .eh-kontakt a{color:inherit;text-decoration:none}
 }
 .leerstart{grid-column:1/-1;''')
 
@@ -1495,7 +1497,7 @@ function kontaktZeigen(){
         title="Kontakt für den ganzen Fachbereich ändern">${kontaktHtml(k, false) || 'Kontakt eintragen'}</button>`
     : kontaktHtml(k, true);
   const e = document.getElementById('ehKontakt');
-  if(e) e.innerHTML = kontaktHtml(k, false);
+  if(e) e.innerHTML = kontaktHtml(k, true);
 }
 function kontaktAendern(){
   schliesseDaten();
